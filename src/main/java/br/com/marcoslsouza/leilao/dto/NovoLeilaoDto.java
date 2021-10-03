@@ -1,4 +1,4 @@
-package br.com.alura.leilao.dto;
+package br.com.marcoslsouza.leilao.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import br.com.alura.leilao.model.Leilao;
+import br.com.marcoslsouza.leilao.model.Leilao;
 
 public class NovoLeilaoDto {
 

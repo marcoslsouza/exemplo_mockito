@@ -1,4 +1,4 @@
-package br.com.alura.leilao.controller;
+package br.com.marcoslsouza.leilao.controller;
 
 import java.security.Principal;
 
@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.alura.leilao.dao.LeilaoDao;
-import br.com.alura.leilao.dao.UsuarioDao;
-import br.com.alura.leilao.dto.NovoLanceDto;
-import br.com.alura.leilao.dto.NovoLeilaoDto;
-import br.com.alura.leilao.model.Leilao;
-import br.com.alura.leilao.model.Usuario;
+import br.com.marcoslsouza.leilao.dao.LeilaoDao;
+import br.com.marcoslsouza.leilao.dao.UsuarioDao;
+import br.com.marcoslsouza.leilao.dto.NovoLanceDto;
+import br.com.marcoslsouza.leilao.dto.NovoLeilaoDto;
+import br.com.marcoslsouza.leilao.model.Leilao;
+import br.com.marcoslsouza.leilao.model.Usuario;
 
 @Controller
 @RequestMapping("/leiloes")

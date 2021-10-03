@@ -1,4 +1,4 @@
-package br.com.alura.leilao.security;
+package br.com.marcoslsouza.leilao.security;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -7,7 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import br.com.alura.leilao.model.Usuario;
+import br.com.marcoslsouza.leilao.model.Usuario;
 
 public class LeilaoUserDetails implements UserDetails {
 

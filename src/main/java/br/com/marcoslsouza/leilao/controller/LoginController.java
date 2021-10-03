@@ -1,4 +1,4 @@
-package br.com.alura.leilao.controller;
+package br.com.marcoslsouza.leilao.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

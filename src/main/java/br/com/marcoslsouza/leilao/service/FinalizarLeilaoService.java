@@ -1,13 +1,13 @@
-package br.com.alura.leilao.service;
+package br.com.marcoslsouza.leilao.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.alura.leilao.dao.LeilaoDao;
-import br.com.alura.leilao.model.Lance;
-import br.com.alura.leilao.model.Leilao;
+import br.com.marcoslsouza.leilao.dao.LeilaoDao;
+import br.com.marcoslsouza.leilao.model.Lance;
+import br.com.marcoslsouza.leilao.model.Leilao;
 
 @Service
 public class FinalizarLeilaoService {

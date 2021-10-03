@@ -1,13 +1,13 @@
-package br.com.alura.leilao.service;
+package br.com.marcoslsouza.leilao.service;
 
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.alura.leilao.dao.PagamentoDao;
-import br.com.alura.leilao.model.Lance;
-import br.com.alura.leilao.model.Pagamento;
+import br.com.marcoslsouza.leilao.dao.PagamentoDao;
+import br.com.marcoslsouza.leilao.model.Lance;
+import br.com.marcoslsouza.leilao.model.Pagamento;
 
 @Service
 public class GeradorDePagamento {

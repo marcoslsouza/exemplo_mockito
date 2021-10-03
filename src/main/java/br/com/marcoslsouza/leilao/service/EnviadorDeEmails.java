@@ -1,10 +1,10 @@
-package br.com.alura.leilao.service;
+package br.com.marcoslsouza.leilao.service;
 
 import org.springframework.stereotype.Service;
 
-import br.com.alura.leilao.model.Lance;
-import br.com.alura.leilao.model.Leilao;
-import br.com.alura.leilao.model.Usuario;
+import br.com.marcoslsouza.leilao.model.Lance;
+import br.com.marcoslsouza.leilao.model.Leilao;
+import br.com.marcoslsouza.leilao.model.Usuario;
 
 @Service
 public class EnviadorDeEmails {
