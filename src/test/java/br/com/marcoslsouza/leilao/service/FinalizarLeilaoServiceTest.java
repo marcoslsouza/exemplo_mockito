@@ -23,12 +23,17 @@ class FinalizarLeilaoServiceTest {
 	@Mock
 	private LeilaoDao dao;
 	
+	@Mock
+	private EnviadorDeEmails enviadorDeEmails;
+	
 	// Roda BeforeEach() antes de todos os metodos.
-	// O Mockito ler todos os atributos @Mock desta classe e cria os Mocks.
 	@BeforeEach
 	public void BeforeEach() {
+		// O Mockito ler todos os atributos @Mock desta classe e cria os Mocks.
 		MockitoAnnotations.initMocks(this);
-		this.service = new FinalizarLeilaoService(dao);
+		
+		// Executa FinalizarLeilaoService
+		this.service = new FinalizarLeilaoService(dao, enviadorDeEmails);
 	}
 	
 	@Test
@@ -55,6 +60,25 @@ class FinalizarLeilaoServiceTest {
 		
 		// Verificar se os dados no metodo no service foram salvos
 		Mockito.verify(dao).salvar(leilao);
+	}
+	
+	@Test
+	void deveriaEnviarEmailParaVencedorDoLeilao() {
+		
+		List<Leilao> leiloes = this.leiloes();
+		
+		// Mockito.when => Quando esse metodo for chamado, devolva a lista leiloes. 
+		// (Para nao retornar a lista fazia)
+		Mockito.when(dao.buscarLeiloesExpirados()).thenReturn(leiloes);
+		
+		this.service.finalizarLeiloesExpirados();
+		
+		Leilao leilao = leiloes.get(0);
+		
+		Lance lanceVencedor = leilao.getLanceVencedor();
+		
+		// Verifica se o mock enviador de emails, enviou o email para o lance vencedor
+		Mockito.verify(this.enviadorDeEmails).enviarEmailVencedorLeilao(lanceVencedor);
 	}
 
 	// Metodo para criar uma lista de leiloes, pois o Mock retornara uma lista vazia em FinalizarLeilaoService->finalizarLeiloesExpirados 
