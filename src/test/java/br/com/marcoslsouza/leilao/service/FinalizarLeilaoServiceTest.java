@@ -39,6 +39,7 @@ class FinalizarLeilaoServiceTest {
 	@Test
 	void deveriaFinalizarUmLeilao() {
 		
+		// Um unico leilao com 2 lances
 		List<Leilao> leiloes = this.leiloes();
 		
 		// Mockito.when => Quando esse metodo for chamado, devolva a lista leiloes. 
@@ -81,6 +82,23 @@ class FinalizarLeilaoServiceTest {
 		Mockito.verify(this.enviadorDeEmails).enviarEmailVencedorLeilao(lanceVencedor);
 	}
 
+	@Test
+	void naoDeveriaEnviarEmailParaVencedorDoLeilaoEmCasoDeErroAoEncerrarOLeilao() {
+		
+		List<Leilao> leiloes = this.leiloes();
+		
+		// Mockito.when => Quando esse metodo for chamado, devolva a lista leiloes. 
+		// (Para nao retornar a lista fazia)
+		Mockito.when(dao.buscarLeiloesExpirados()).thenReturn(leiloes);
+		
+		Mockito.when(dao.salvar(Mockito.any())).thenThrow(RuntimeException.class);
+		
+		try {
+			service.finalizarLeiloesExpirados();
+			Mockito.verifyNoInteractions(this.enviadorDeEmails);
+		} catch(Exception e) {}
+	}
+	
 	// Metodo para criar uma lista de leiloes, pois o Mock retornara uma lista vazia em FinalizarLeilaoService->finalizarLeiloesExpirados 
 	// (List<Leilao> expirados = leiloes.buscarLeiloesExpirados();)
 	private List<Leilao> leiloes() {
