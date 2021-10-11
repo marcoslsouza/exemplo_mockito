@@ -1,7 +1,10 @@
 package br.com.marcoslsouza.leilao.service;
 
 import java.math.BigDecimal;
+import java.time.Clock;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,17 +32,27 @@ class GeradorDePagamentoTest {
 	@Captor
 	private ArgumentCaptor<Pagamento> captorPagamento;
 	
+	@Mock
+	private Clock clock; 
+	
 	// Roda BeforeEach() antes de todos os metodos.
 	@BeforeEach
 	public void BeforeEach() {
 		// O Mockito ler todos os atributos @Mock desta classe e cria os Mocks.
 		MockitoAnnotations.initMocks(this);
-		this.geradorDePagamento = new GeradorDePagamento(pagamentoDao);
+		this.geradorDePagamento = new GeradorDePagamento(pagamentoDao, this.clock);
 	}
 	
 	@Test
 	void deveriaCriarPagamentoParaVencedorDoLeilao() {
 		Leilao leilao = this.leiloes();
+		
+		LocalDate data = LocalDate.of(2021, 10, 10);
+		
+		// Quando o clock chamar instant
+		Instant instant = data.atStartOfDay(ZoneId.systemDefault()).toInstant();
+		Mockito.when(clock.instant()).thenReturn(instant);
+		Mockito.when(clock.getZone()).thenReturn(ZoneId.systemDefault());
 		
 		// Pega o unico lance para colocar como vencedor
 		Lance vencedor = leilao.getLances().get(0);
